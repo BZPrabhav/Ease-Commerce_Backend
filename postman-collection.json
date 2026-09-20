@@ -1,0 +1,158 @@
+{
+  "info": {
+    "name": "Ease Commerce Backend",
+    "description": "Collection for testing the multi-courier shipping backend API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"order_id\": \"ORD-1001\",\n  \"courier_partner\": \"urbanebolt\",\n  \"customer\": {\n    \"name\": \"Jane Doe\",\n    \"phone\": \"9999999999\",\n    \"email\": \"jane@example.com\"\n  },\n  \"pickup_address\": {\n    \"name\": \"Seller\",\n    \"address_line_1\": \"10 Market Rd\",\n    \"city\": \"Bengaluru\",\n    \"state\": \"Karnataka\",\n    \"pincode\": \"560001\",\n    \"country\": \"IN\"\n  },\n  \"delivery_address\": {\n    \"name\": \"Jane Doe\",\n    \"address_line_1\": \"22 Residency Rd\",\n    \"city\": \"Bengaluru\",\n    \"state\": \"Karnataka\",\n    \"pincode\": \"560002\",\n    \"country\": \"IN\"\n  },\n  \"items\": [\n    { \"sku\": \"SKU-1\", \"name\": \"T-shirt\", \"quantity\": 1, \"price\": 499 }\n  ],\n  \"shipment\": {\n    \"weight_kg\": 0.5,\n    \"declared_value\": 499\n  }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/orders",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "orders"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Track Order",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/orders/ORD-1001/track",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "orders",
+            "ORD-1001",
+            "track"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cancel Order",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/orders/ORD-1001/cancel",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "orders",
+            "ORD-1001",
+            "cancel"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Bulk Create Orders",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"orders\": [\n    {\n      \"order_id\": \"ORD-2001\",\n      \"courier_partner\": \"urbanebolt\",\n      \"customer\": {\n        \"name\": \"Alice\",\n        \"phone\": \"9888888888\",\n        \"email\": \"alice@example.com\"\n      },\n      \"pickup_address\": {\n        \"name\": \"Seller\",\n        \"address_line_1\": \"1 Main St\",\n        \"city\": \"Delhi\",\n        \"state\": \"Delhi\",\n        \"pincode\": \"110001\",\n        \"country\": \"IN\"\n      },\n      \"delivery_address\": {\n        \"name\": \"Alice\",\n        \"address_line_1\": \"5 Rose Ave\",\n        \"city\": \"Delhi\",\n        \"state\": \"Delhi\",\n        \"pincode\": \"110002\",\n        \"country\": \"IN\"\n      },\n      \"items\": [\n        { \"sku\": \"SKU-2\", \"name\": \"Jeans\", \"quantity\": 1, \"price\": 999 }\n      ],\n      \"shipment\": {\n        \"weight_kg\": 0.8,\n        \"declared_value\": 999\n      }\n    },\n    {\n      \"order_id\": \"ORD-2002\",\n      \"courier_partner\": \"mockcourier\",\n      \"customer\": {\n        \"name\": \"Bob\",\n        \"phone\": \"9777777777\",\n        \"email\": \"bob@example.com\"\n      },\n      \"pickup_address\": {\n        \"name\": \"Seller\",\n        \"address_line_1\": \"2 Park St\",\n        \"city\": \"Mumbai\",\n        \"state\": \"Maharashtra\",\n        \"pincode\": \"400001\",\n        \"country\": \"IN\"\n      },\n      \"delivery_address\": {\n        \"name\": \"Bob\",\n        \"address_line_1\": \"9 Lake Rd\",\n        \"city\": \"Mumbai\",\n        \"state\": \"Maharashtra\",\n        \"pincode\": \"400002\",\n        \"country\": \"IN\"\n      },\n      \"items\": [\n        { \"sku\": \"SKU-3\", \"name\": \"Bag\", \"quantity\": 1, \"price\": 1799 }\n      ],\n      \"shipment\": {\n        \"weight_kg\": 1.2,\n        \"declared_value\": 1799\n      }\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/orders/bulk",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "orders",
+            "bulk"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Bulk Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/orders/bulk/<batch_id>",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "orders",
+            "bulk",
+            "<batch_id>"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
